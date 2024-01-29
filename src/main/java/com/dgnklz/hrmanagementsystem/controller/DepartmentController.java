@@ -3,6 +3,7 @@ package com.dgnklz.hrmanagementsystem.controller;
 import com.dgnklz.hrmanagementsystem.business.abstracts.DepartmentService;
 import com.dgnklz.hrmanagementsystem.business.dto.requests.department.CreateDepartmentRequest;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.CreateDepartmentResponse;
+import com.dgnklz.hrmanagementsystem.core.result.DataResult;
 import com.dgnklz.hrmanagementsystem.entity.Department;
 import com.dgnklz.hrmanagementsystem.entity.Employee;
 import com.dgnklz.hrmanagementsystem.repository.DepartmentRepository;
@@ -21,7 +22,7 @@ public class DepartmentController {
         private DepartmentService service;
 
         @PostMapping("/add")
-        public CreateDepartmentResponse add(@RequestBody CreateDepartmentRequest request){
+        public DataResult<CreateDepartmentResponse> add(@RequestBody CreateDepartmentRequest request){
                 return service.add(request);
         }
 }
