@@ -1,4 +1,4 @@
-package com.dgnklz.hrmanagementsystem.business.dto.responses;
+package com.dgnklz.hrmanagementsystem.business.dto.responses.department;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateDepartmentResponse {
+public class GetAllDepartmentsResponse {
+    //private int id;
     private String departmentName;
     private String description;
 }
