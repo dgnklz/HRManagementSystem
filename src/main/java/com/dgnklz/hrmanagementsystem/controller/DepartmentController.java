@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/department")
 @AllArgsConstructor
@@ -22,7 +24,7 @@ public class DepartmentController {
         }
 
         @GetMapping("/getAll")
-        public DataResult<GetAllDepartmentsResponse> getAll(){
-                return null;
+        public DataResult<List<GetAllDepartmentsResponse>> getAll(){
+                return service.getAll();
         }
 }
