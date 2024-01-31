@@ -10,9 +10,13 @@ import com.dgnklz.hrmanagementsystem.core.result.DataResult;
 import com.dgnklz.hrmanagementsystem.core.result.SuccessDataResult;
 import com.dgnklz.hrmanagementsystem.entity.Contract;
 import com.dgnklz.hrmanagementsystem.repository.ContractRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class ContractManager implements ContractService {
 
     private ContractRepository repository;
