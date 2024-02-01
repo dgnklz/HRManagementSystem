@@ -2,7 +2,6 @@ package com.dgnklz.hrmanagementsystem.business.conceretes;
 
 import com.dgnklz.hrmanagementsystem.business.abstracts.EmployeeService;
 import com.dgnklz.hrmanagementsystem.business.dto.requests.employee.CreateEmployeeRequest;
-import com.dgnklz.hrmanagementsystem.business.dto.responses.department.CreateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.CreateEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetAllEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.core.exception.BusinessException;
@@ -13,7 +12,6 @@ import com.dgnklz.hrmanagementsystem.entity.Employee;
 import com.dgnklz.hrmanagementsystem.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +35,7 @@ public class EmployeeManager implements EmployeeService {
     }
 
     @Override
-    public DataResult<List<GetAllEmployeeResponse>> getAll(GetAllEmployeeResponse request) {
+    public DataResult<List<GetAllEmployeeResponse>> getAll() {
         List<Employee> employees = repository.findAll();
         List<GetAllEmployeeResponse> responses = employees
                 .stream()
