@@ -4,6 +4,13 @@
 
 The HRManagementSystem API is a human resources management system developed in Java using the Spring framework. This API provides essential functionalities for managing employee information, departments, and other HR-related operations.
 
+## Development Team Group 2
+
+- [Vinicius Lalli]
+- [Dogan Kilaz]
+- [Regina Pashkevych]
+- [Pravin Suresh]
+
 ## Prerequisites
 
 Make sure to have the following tools installed before running the project:
