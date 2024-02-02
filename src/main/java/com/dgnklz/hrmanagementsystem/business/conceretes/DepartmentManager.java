@@ -39,7 +39,7 @@ public class DepartmentManager implements DepartmentService {
                 .stream()
                 .map(department -> mapper.forResponse().map(department, GetAllDepartmentsResponse.class))
                 .toList();
-        return new SuccessDataResult<>(responses,"All Departments Listed");
+        return new SuccessDataResult<>(responses,"All Department Listed");
     }
 
     /// DOMAIN RULES \\\
