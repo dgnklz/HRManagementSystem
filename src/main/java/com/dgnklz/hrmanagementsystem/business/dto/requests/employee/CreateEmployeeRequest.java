@@ -2,12 +2,14 @@ package com.dgnklz.hrmanagementsystem.business.dto.requests.employee;
 
 import com.dgnklz.hrmanagementsystem.entity.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -15,14 +17,17 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreateEmployeeRequest {
-    @NotBlank(message = "can not be blanked")
-    @Length(min = 3, max = 50, message = "should be between 3-50 chars")
-    private Role role;
-    @NotBlank(message = "can not be blanked")
-    private Department department;
+//    @NotBlank(message = "can not be blanked")
+    //roleId
+    @NotNull
+    private int role;
+    @NotNull
+    //departmentId
+    private int department;
 
-    @NotBlank(message = "can not be blanked")
-    private Contract contract;
+    @NotNull
+    //contractId
+    private int contract;
 
     @NotBlank(message = "can not be blanked")
     @Length(min = 3, max = 50, message = "should be between 3-50 chars")
@@ -33,9 +38,10 @@ public class CreateEmployeeRequest {
     private String surname;
 
     @NotBlank(message = "can not be blanked")
-    private Gender gender;
 
-    @NotBlank(message = "can not be blanked")
+    private String gender;
+
+//    @NotBlank(message = "can not be blanked")
     private Address address;
 
     @NotBlank(message = "can not be blanked")
@@ -49,11 +55,9 @@ public class CreateEmployeeRequest {
     @Length(min = 3, max = 50, message = "should be between 3-50 chars")
     private String nationality;
 
-    @NotBlank(message = "can not be blanked")
-    @Length(min = 3, max = 50, message = "should be between 3-50 chars")
+    @NotNull
     private Date dateOfBirth;
 
-    @NotBlank(message = "can not be blanked")
-    @Length(min = 3, max = 50, message = "should be between 3-50 chars")
+    @NotNull
     private int age;
 }
