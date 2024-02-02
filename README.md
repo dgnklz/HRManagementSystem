@@ -6,8 +6,8 @@ The HRManagementSystem API is a human resources management system developed in J
 
 ## Development Team Group 2
 
-- [Vinicius Lalli]
 - [Dogan Kilaz]
+- [Vinicius Lalli]
 - [Regina Pashkevych]
 - [Pravin Suresh]
 
@@ -48,11 +48,8 @@ The application will be available at [http://localhost:8080](http://localhost:80
 
 The API exposes the following endpoints:
 
-- `GET /api/employees`: Returns the list of all employees.
 - `GET /api/employees/{id}`: Returns details of a specific employee.
-- `POST /api/employees`: Creates a new employee.
-- `PUT /api/employees/{id}`: Updates details of an existing employee.
-- `DELETE /api/employees/{id}`: Deletes an employee.
+
 
 Add more details about the endpoints as needed.
 
