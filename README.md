@@ -53,10 +53,4 @@ The API exposes the following endpoints:
 
 Add more details about the endpoints as needed.
 
-## Contributing
 
-Feel free to contribute improvements. Open an issue to discuss the changes you would like to make.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
