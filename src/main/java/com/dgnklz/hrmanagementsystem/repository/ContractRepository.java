@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ContractRepository extends JpaRepository<Contract,Integer> {
 
-    boolean existsContractByTypeContract(String contractType);
+    boolean existsContractById(int id);
+
 
 }

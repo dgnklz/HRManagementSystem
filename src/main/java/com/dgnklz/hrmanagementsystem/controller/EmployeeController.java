@@ -5,6 +5,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.employee.CreateEmploy
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.CreateEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetAllEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
+import com.dgnklz.hrmanagementsystem.core.result.Result;
 import com.dgnklz.hrmanagementsystem.entity.Employee;
 import com.dgnklz.hrmanagementsystem.repository.EmployeeRepository;
 import jakarta.validation.Valid;
@@ -28,8 +29,14 @@ public class EmployeeController {
         return service.add(request);
     }
 
-    @PostMapping("/getAll")
+    @GetMapping("/getAll")
     public DataResult<List<GetAllEmployeeResponse>> getAll() { return service.getAll();}
+
+    @DeleteMapping("/deleteById/{id}")
+    public Result deleteById(@PathVariable int id){return service.deleteById(id);}
+
+    @DeleteMapping("/deleteByEmail/{email}")
+    public Result deleteByEmail(@PathVariable String email){return service.deleteByEmail(email);}
 
     /*@GetMapping("/getAll")
     public List<Employee> getAll(){

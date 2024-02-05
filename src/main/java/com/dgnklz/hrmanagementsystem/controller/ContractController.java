@@ -5,6 +5,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.contract.CreateContra
 import com.dgnklz.hrmanagementsystem.business.dto.responses.contract.CreateContractResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.contract.GetAllContractsResponse;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
+import com.dgnklz.hrmanagementsystem.core.result.Result;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,7 @@ public class ContractController {
     public DataResult<List<GetAllContractsResponse>> getAll(){return service.getAll();}
 
 
+    @DeleteMapping("deleteById/{id}")
+    public Result deleteById(@PathVariable int id) {return service.deleteById(id);}
 
 }
