@@ -7,7 +7,9 @@ import com.dgnklz.hrmanagementsystem.business.dto.responses.contract.GetAllContr
 import com.dgnklz.hrmanagementsystem.core.exception.BusinessException;
 import com.dgnklz.hrmanagementsystem.core.mapping.ModelMapperService;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
+import com.dgnklz.hrmanagementsystem.core.result.Result;
 import com.dgnklz.hrmanagementsystem.core.result.SuccessDataResult;
+import com.dgnklz.hrmanagementsystem.core.result.SuccessResult;
 import com.dgnklz.hrmanagementsystem.entity.Contract;
 import com.dgnklz.hrmanagementsystem.repository.ContractRepository;
 import lombok.AllArgsConstructor;
@@ -26,7 +28,6 @@ public class ContractManager implements ContractService {
 
     @Override
     public DataResult<CreateContractResponse> add(CreateContractRequest request) {
-        checkIfContractExistsByTypeContract(request.getTypeContract());
         Contract contract = mapper.forRequest().map(request, Contract.class);
         repository.save(contract);
         CreateContractResponse response = mapper.forResponse().map(contract, CreateContractResponse.class);
@@ -43,9 +44,17 @@ public class ContractManager implements ContractService {
         return new SuccessDataResult<>(responses, "All Contracts Listed");
     }
 
-    private void checkIfContractExistsByTypeContract(String name) {
-        if (repository.existsContractByTypeContract(name)) {
-            throw new BusinessException("Contract exist");
+    public Result deleteById(int id ){
+        checkIfContractNotExistById(id);
+        repository.deleteById(id);
+        return new SuccessResult("Deleted contract Sucessfully");
+    }
+
+    /// DOMAIN RULES \\\
+
+    private void checkIfContractNotExistById(int id){
+        if(!repository.existsContractById(id)){
+            throw new BusinessException("Contract not exist");
         }
     }
 }

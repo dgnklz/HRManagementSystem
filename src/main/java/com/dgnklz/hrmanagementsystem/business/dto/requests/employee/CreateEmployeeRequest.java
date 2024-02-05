@@ -42,6 +42,7 @@ public class CreateEmployeeRequest {
     private String gender;
 
 //    @NotBlank(message = "can not be blanked")
+    @NotNull
     private Address address;
 
     @NotBlank(message = "can not be blanked")

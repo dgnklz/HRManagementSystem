@@ -4,6 +4,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.contract.CreateContra
 import com.dgnklz.hrmanagementsystem.business.dto.responses.contract.CreateContractResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.contract.GetAllContractsResponse;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
+import com.dgnklz.hrmanagementsystem.core.result.Result;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface ContractService {
     DataResult<CreateContractResponse> add(CreateContractRequest request);
 
     DataResult<List<GetAllContractsResponse>> getAll();
+
+    Result deleteById(int id );
 }

@@ -2,6 +2,7 @@ package com.dgnklz.hrmanagementsystem.business.dto.requests.contract;
 
 import com.dgnklz.hrmanagementsystem.entity.Salary;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,22 +16,19 @@ import java.util.Date;
 @NoArgsConstructor
 public class CreateContractRequest {
 
-    @NotBlank(message = "can not be blanked")
+    @NotNull
     private Salary salary;
     @NotBlank(message = "can not be blanked")
     @Length(min = 3, max = 50, message = "should be between 3-50 chars")
     private  String typeContract;
 
-    @NotBlank(message = "can not be blanked")
-    @Length(min = 1, max = 50, message = "should be between 3-50 chars")
+    @NotNull
     private  int hoursAmountMonth;
 
-    @NotBlank(message = "can not be blanked")
-    @Length(min = 1, max = 50, message = "should be between 3-50 chars")
+    @NotNull
     private Date startDateContract;
 
-    @NotBlank(message = "can not be blanked")
-    @Length(min = 1, max = 50, message = "should be between 3-50 chars")
+    @NotNull
     private Date endDateContract;
 
 }
