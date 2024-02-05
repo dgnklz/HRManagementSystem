@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetAllDepartmentsResponse {
-    //private int id;
+    private int id;
     private String departmentName;
     private String description;
 }
