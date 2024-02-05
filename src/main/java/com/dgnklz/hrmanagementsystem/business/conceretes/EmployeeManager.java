@@ -7,7 +7,9 @@ import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetAllEmplo
 import com.dgnklz.hrmanagementsystem.core.exception.BusinessException;
 import com.dgnklz.hrmanagementsystem.core.mapping.ModelMapperService;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
+import com.dgnklz.hrmanagementsystem.core.result.Result;
 import com.dgnklz.hrmanagementsystem.core.result.SuccessDataResult;
+import com.dgnklz.hrmanagementsystem.core.result.SuccessResult;
 import com.dgnklz.hrmanagementsystem.entity.Employee;
 import com.dgnklz.hrmanagementsystem.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
@@ -44,12 +46,39 @@ public class EmployeeManager implements EmployeeService {
         return new SuccessDataResult<>(responses, "All Employees Listed");
 
     }
+    @Override
+    public Result deleteById(int id) {
+        checkIfEmployeeNotExistById(id);
+        repository.deleteById(id);
+        return new SuccessResult("Deleted employee Sucessfully");
+    }
+
+    @Override
+    public Result deleteByEmail(String email){
+        checkIfEmployeeNotExistByEmail(email);
+        Employee employee = repository.findEmployeeByEmail(email);
+        repository.delete(employee);
+        return new SuccessResult("Delete by email");
+
+    }
 
     /// DOMAIN RULES \\\
 
+    private void checkIfEmployeeNotExistById(int id){
+        if(!repository.existsById(id)){
+            throw new BusinessException("Employee is not exist by this id: " + id);
+        }
+    }
     private void checkIfExistEmployee(String name, String surname) {
         if (repository.existsEmployeeByNameAndSurname(name, surname)){
             throw new BusinessException("Employee exist");
         }
     }
+
+    private void checkIfEmployeeNotExistByEmail(String email){
+        if(!repository.existsEmployeeByEmail(email)) {
+            throw new BusinessException("Employee email not exist");
+        }
+    }
+
 }
