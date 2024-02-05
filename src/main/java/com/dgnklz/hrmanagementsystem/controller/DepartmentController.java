@@ -5,6 +5,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.department.CreateDepa
 import com.dgnklz.hrmanagementsystem.business.dto.responses.department.CreateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.department.GetAllDepartmentsResponse;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
+import com.dgnklz.hrmanagementsystem.core.result.Result;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,5 +27,15 @@ public class DepartmentController {
         @GetMapping("/getAll")
         public DataResult<List<GetAllDepartmentsResponse>> getAll(){
                 return service.getAll();
+        }
+
+        @DeleteMapping("/deleteById/{id}")
+        public Result delete(@PathVariable int id){
+              return service.deleteById(id);
+        }
+
+        @DeleteMapping("/deleteByName/{name}")
+        public Result deleteByName(@PathVariable String name){
+                return service.deleteByName(name);
         }
 }
