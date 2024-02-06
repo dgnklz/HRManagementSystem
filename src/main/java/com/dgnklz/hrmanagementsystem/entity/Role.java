@@ -19,9 +19,6 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "role")
-    private List<Employee> employees;
-
     @Column(name="name")
     private String name;
 
@@ -30,4 +27,7 @@ public class Role {
 
     @Column(name="benefits")
     private String benefits;
+
+    @OneToMany(mappedBy = "role")
+    private List<Employee> employees;
 }

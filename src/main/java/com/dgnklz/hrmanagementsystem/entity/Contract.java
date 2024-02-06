@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -20,25 +21,27 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "employeeId")
-    private Employee employee;
-
     @Embedded
     private Salary salary;
 
     @Column(name="typeContract")
-    private  String typeContract;
+    private String typeContract;
 
     @Column(name="hoursAmountMonth")
-    private  int hoursAmountMonth;
+    private int hoursAmountMonth;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="startDateContract")
     private Date startDateContract;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name="endDateContract")
     private Date endDateContract;
 
-
+    @OneToOne
+    @JoinColumn(name = "employeeId")
+    private Employee employee;
 
 }

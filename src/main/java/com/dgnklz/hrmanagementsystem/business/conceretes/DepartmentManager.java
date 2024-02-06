@@ -2,8 +2,10 @@ package com.dgnklz.hrmanagementsystem.business.conceretes;
 
 import com.dgnklz.hrmanagementsystem.business.abstracts.DepartmentService;
 import com.dgnklz.hrmanagementsystem.business.dto.requests.department.CreateDepartmentRequest;
+import com.dgnklz.hrmanagementsystem.business.dto.requests.department.UpdateDepartmentRequest;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.department.CreateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.department.GetAllDepartmentsResponse;
+import com.dgnklz.hrmanagementsystem.business.dto.responses.department.UpdateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.core.exception.BusinessException;
 import com.dgnklz.hrmanagementsystem.core.mapping.ModelMapperService;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
@@ -29,25 +31,32 @@ public class DepartmentManager implements DepartmentService {
     public DataResult<CreateDepartmentResponse> add(CreateDepartmentRequest request) {
         checkIfDepartmentExistByName(request.getDepartmentName());
         Department department = mapper.forRequest().map(request, Department.class);
-
         repository.save(department);
-
         CreateDepartmentResponse response = mapper.forResponse().map(department, CreateDepartmentResponse.class);
-
         return new SuccessDataResult<>(response, "Created");
     }
 
     @Override
     public DataResult<List<GetAllDepartmentsResponse>> getAll() {
         List<Department> departments = repository.findAll();
-        if (departments.isEmpty()){
+        if (departments.isEmpty()) {
             return new SuccessDataResult<>("No Data Found");
         }
         List<GetAllDepartmentsResponse> responses = departments
                 .stream()
                 .map(department -> mapper.forResponse().map(department, GetAllDepartmentsResponse.class))
                 .toList();
-        return new SuccessDataResult<>(responses,"All Departments Listed");
+        return new SuccessDataResult<>(responses, "All Departments Listed");
+    }
+
+    @Override
+    public DataResult<UpdateDepartmentResponse> update(UpdateDepartmentRequest request, int id) {
+        checkIfDepartmentNotExistById(id);
+        Department department = mapper.forRequest().map(request, Department.class);
+        department.setId(id);
+        repository.save(department);
+        UpdateDepartmentResponse response = mapper.forResponse().map(department, UpdateDepartmentResponse.class);
+        return new SuccessDataResult<>(response, "Updated Successfully");
     }
 
     @Override
@@ -67,20 +76,23 @@ public class DepartmentManager implements DepartmentService {
 
     /// DOMAIN RULES \\\
 
-    private void checkIfDepartmentExistByName(String name){
-        if(repository.existsByDepartmentName(name)){
-            throw new BusinessException("Department exist");
+    private void checkIfDepartmentExistByName(String name) {
+        List<Department> departments = repository.findAll();
+        for (Department department : departments){
+            if (department.getDepartmentName().equalsIgnoreCase(name)){
+                throw new BusinessException("Department exist by name: " + name);
+            }
         }
     }
 
-    private void checkIfDepartmentNotExistByName(String name){
-        if(!repository.existsByDepartmentName(name)){
+    private void checkIfDepartmentNotExistByName(String name) {
+        if (!repository.existsByDepartmentName(name)) {
             throw new BusinessException("Department not exist");
         }
     }
 
-    private void checkIfDepartmentNotExistById(int id){
-        if(!repository.existsById(id)){
+    private void checkIfDepartmentNotExistById(int id) {
+        if (!repository.existsById(id)) {
             throw new BusinessException("Department not exist by Id");
         }
     }

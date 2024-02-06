@@ -7,9 +7,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class CreateDepartmentResponse {
+    private int id;
     private String departmentName;
     private String description;
 }

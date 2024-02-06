@@ -1,20 +1,16 @@
 package com.dgnklz.hrmanagementsystem.business.dto.responses.employee;
 
 import com.dgnklz.hrmanagementsystem.entity.*;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Getter
 @Setter
-public class CreateEmployeeResponse {
-    private int id;
+public class UpdateEmployeeResponse {
     private String name;
     private String surname;
     private Gender gender;

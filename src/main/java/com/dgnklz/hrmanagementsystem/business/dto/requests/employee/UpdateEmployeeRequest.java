@@ -1,6 +1,6 @@
 package com.dgnklz.hrmanagementsystem.business.dto.requests.employee;
 
-import com.dgnklz.hrmanagementsystem.entity.*;
+import com.dgnklz.hrmanagementsystem.entity.Address;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +16,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class CreateEmployeeRequest {
+public class UpdateEmployeeRequest {
     @NotBlank(message = "can not be blanked")
     @Length(min = 3, max = 50, message = "should be between 3-50 chars")
     private String name;
@@ -47,9 +47,9 @@ public class CreateEmployeeRequest {
     @NotNull(message = "can not be null")
     private Date dateOfBirth;
 
-    @NotNull(message = "can not be blanked")
+    /*@NotNull(message = "can not be blanked")
     @Length(min = 3, max = 50, message = "should be between 3-50 chars")
-    private int age;
+    private int age;*/
 
     @NotNull(message = "can not be null")
     private int roleId;
