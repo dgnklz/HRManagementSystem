@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GetAllDepartmentsResponse {
+public class UpdateDepartmentResponse {
     private int id;
     private String departmentName;
     private String description;

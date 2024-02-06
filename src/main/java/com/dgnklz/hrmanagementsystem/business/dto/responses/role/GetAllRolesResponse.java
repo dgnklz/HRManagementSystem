@@ -7,10 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class GetAllRolesResponse {
+    private int id;
     private String name;
-
     private String position;
+    private String benefits;
 }

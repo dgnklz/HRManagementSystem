@@ -9,7 +9,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Getter
 @Setter
-public class CreateDepartmentRequest {
+public class UpdateDepartmentRequest {
     @NotBlank(message = "can not be blanked")
     @Length(min = 3, max = 50, message = "should be between 3-50 chars")
     private String departmentName;

@@ -13,8 +13,11 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class CreateEmployeeResponse {
+public class GetAllEmployeesResponse {
     private int id;
+    private int roleId;
+    private int departmentId;
+    private int contractId;
     private String name;
     private String surname;
     private Gender gender;
@@ -24,7 +27,4 @@ public class CreateEmployeeResponse {
     private String nationality;
     private Date dateOfBirth;
     private int age;
-    private Department department;
-    private Role role;
-    private Contract contract;
 }

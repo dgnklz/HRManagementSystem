@@ -7,8 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GetAllDepartmentsResponse {
-    private int id;
+public class GetDepartmentByIdResponse {
     private String departmentName;
     private String description;
 }

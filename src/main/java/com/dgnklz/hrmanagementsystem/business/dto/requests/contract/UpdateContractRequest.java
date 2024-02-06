@@ -1,6 +1,5 @@
 package com.dgnklz.hrmanagementsystem.business.dto.requests.contract;
 
-import com.dgnklz.hrmanagementsystem.entity.Employee;
 import com.dgnklz.hrmanagementsystem.entity.Salary;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -14,9 +13,10 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
+
 @Getter
 @Setter
-public class CreateContractRequest {
+public class UpdateContractRequest {
     @NotNull(message = "Please enter employee id")
     private int employeeId;
 
@@ -39,5 +39,4 @@ public class CreateContractRequest {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "Please enter End Date")
     private Date endDateContract;
-
 }
