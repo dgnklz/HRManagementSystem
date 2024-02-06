@@ -7,6 +7,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.responses.department.GetAllDep
 import com.dgnklz.hrmanagementsystem.business.dto.responses.role.CreateRoleResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.role.GetAllRolesResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.role.UpdateRoleResponse;
+import com.dgnklz.hrmanagementsystem.business.rules.RoleBusinessRule;
 import com.dgnklz.hrmanagementsystem.core.exception.BusinessException;
 import com.dgnklz.hrmanagementsystem.core.mapping.ModelMapperService;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
@@ -25,15 +26,14 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class RoleManager implements RoleService {
-
-    @Autowired
     private RoleRepository repository;
     private ModelMapperService mapper;
+    private RoleBusinessRule rule;
 
 
     @Override
     public DataResult<CreateRoleResponse> add(CreateRoleRequest request) {
-        checkIfRoleExistByName(request.getName());
+        rule.checkIfRoleExistsByName(request.getName());
         Role role = mapper.forRequest().map(request, Role.class);
         repository.save(role);
         CreateRoleResponse response = mapper.forResponse().map(role, CreateRoleResponse.class);
@@ -52,6 +52,8 @@ public class RoleManager implements RoleService {
 
     @Override
     public DataResult<UpdateRoleResponse> update(UpdateRoleRequest request, int id) {
+        rule.checkIfRoleNotExistById(id);
+        rule.checkIfRoleExistsByName(request.getName(), id);
         Role role = mapper.forRequest().map(request, Role.class);
         role.setId(id);
         repository.save(role);
@@ -60,28 +62,9 @@ public class RoleManager implements RoleService {
     }
 
     public Result deleteByName(String name) {
-        checkIfRoleNotExistsByName(name);
+        rule.checkIfRoleNotExistsByName(name);
         Role role = repository.findRoleByName(name);
         repository.delete(role);
         return new SuccessResult("Delete role by name");
     }
-
-
-    /// DOMAIN RULES \\\
-
-    private void checkIfRoleExistByName(String name) {
-        List<Role> roles = repository.findAll();
-        for (Role role : roles){
-            if (role.getName().equalsIgnoreCase(name)){
-                throw new BusinessException("Role exist by name: " + name);
-            }
-        }
-    }
-
-    private void checkIfRoleNotExistsByName(String name) {
-        if (!repository.existsRoleByName(name)) {
-            throw new BusinessException("Role does not exist");
-        }
-    }
-
 }

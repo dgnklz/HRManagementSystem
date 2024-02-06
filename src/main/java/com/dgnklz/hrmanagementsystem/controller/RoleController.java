@@ -3,18 +3,14 @@ package com.dgnklz.hrmanagementsystem.controller;
 
 import com.dgnklz.hrmanagementsystem.business.abstracts.RoleService;
 import com.dgnklz.hrmanagementsystem.business.dto.requests.role.CreateRoleRequest;
+import com.dgnklz.hrmanagementsystem.business.dto.requests.role.UpdateRoleRequest;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.role.CreateRoleResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.role.GetAllRolesResponse;
+import com.dgnklz.hrmanagementsystem.business.dto.responses.role.UpdateRoleResponse;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
 import com.dgnklz.hrmanagementsystem.core.result.Result;
-import com.dgnklz.hrmanagementsystem.entity.Employee;
-import com.dgnklz.hrmanagementsystem.entity.Role;
-import com.dgnklz.hrmanagementsystem.repository.EmployeeRepository;
-import com.dgnklz.hrmanagementsystem.repository.RoleRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,6 +31,11 @@ public class RoleController {
     @GetMapping("getAll")
     public DataResult<List<GetAllRolesResponse>> getAll(){return service.getAll();}
 
+    @PutMapping("/update/{id}")
+    public DataResult<UpdateRoleResponse> update(@Valid @RequestBody UpdateRoleRequest request, @PathVariable int id){
+        return service.update(request, id);
+    }
+
     @DeleteMapping("/deleteByName/{name}")
-    public Result deleteByName(String name){return service.deleteByName(name);}
+    public Result deleteByName(@PathVariable String name){return service.deleteByName(name);}
 }

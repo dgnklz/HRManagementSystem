@@ -47,9 +47,9 @@ public class CreateEmployeeRequest {
     @NotNull(message = "can not be null")
     private Date dateOfBirth;
 
-    @NotNull(message = "can not be blanked")
+    /*@NotNull(message = "can not be blanked")
     @Length(min = 3, max = 50, message = "should be between 3-50 chars")
-    private int age;
+    private int age;*/
 
     @NotNull(message = "can not be null")
     private int roleId;
