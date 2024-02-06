@@ -6,6 +6,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.role.CreateRoleReques
 import com.dgnklz.hrmanagementsystem.business.dto.responses.role.CreateRoleResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.role.GetAllRolesResponse;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
+import com.dgnklz.hrmanagementsystem.core.result.Result;
 import com.dgnklz.hrmanagementsystem.entity.Employee;
 import com.dgnklz.hrmanagementsystem.entity.Role;
 import com.dgnklz.hrmanagementsystem.repository.EmployeeRepository;
@@ -34,4 +35,6 @@ public class RoleController {
     @GetMapping("getAll")
     public DataResult<List<GetAllRolesResponse>> getAll(){return service.getAll();}
 
+    @DeleteMapping("/deleteByName/{name}")
+    public Result deleteByName(String name){return service.deleteByName(name);}
 }

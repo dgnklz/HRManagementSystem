@@ -8,7 +8,9 @@ import com.dgnklz.hrmanagementsystem.business.dto.responses.role.GetAllRolesResp
 import com.dgnklz.hrmanagementsystem.core.exception.BusinessException;
 import com.dgnklz.hrmanagementsystem.core.mapping.ModelMapperService;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
+import com.dgnklz.hrmanagementsystem.core.result.Result;
 import com.dgnklz.hrmanagementsystem.core.result.SuccessDataResult;
+import com.dgnklz.hrmanagementsystem.core.result.SuccessResult;
 import com.dgnklz.hrmanagementsystem.entity.Department;
 import com.dgnklz.hrmanagementsystem.entity.Role;
 import com.dgnklz.hrmanagementsystem.repository.RoleRepository;
@@ -30,7 +32,6 @@ public class RoleManager implements RoleService {
 
     @Override
     public DataResult<CreateRoleResponse> add(CreateRoleRequest request) {
-       checkIfRoleExistsByName(request.getName());
         Role role = mapper.forRequest().map(request, Role.class);
         repository.save(role);
         CreateRoleResponse response = mapper.forResponse().map(role, CreateRoleResponse.class);
@@ -47,12 +48,21 @@ public class RoleManager implements RoleService {
         return new SuccessDataResult<>(responses, "All Roles Listed");
     }
 
+    public Result deleteByName(String name) {
+        checkIfRoleExistsByName(name);
+        Role role = repository.findRoleByName(name);
+        repository.delete(role);
+        return new SuccessResult("Delete role by name");
+    }
+
+
+
 
     /// DOMAIN RULES \\\
 
     private void checkIfRoleExistsByName(String name) {
-        if (repository.existsRoleByName(name)) {
-            throw new BusinessException("Role exist");
+        if (!repository.existsRoleByName(name)) {
+            throw new BusinessException("Role does not exist");
         }
     }
 
