@@ -6,7 +6,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.contract.UpdateContra
 import com.dgnklz.hrmanagementsystem.business.dto.responses.contract.CreateContractResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.contract.GetAllContractsResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.contract.UpdateContractResponse;
-import com.dgnklz.hrmanagementsystem.core.exception.BusinessException;
+import com.dgnklz.hrmanagementsystem.business.rules.ContractBusinessRule;
 import com.dgnklz.hrmanagementsystem.core.mapping.ModelMapperService;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
 import com.dgnklz.hrmanagementsystem.core.result.Result;
@@ -14,7 +14,6 @@ import com.dgnklz.hrmanagementsystem.core.result.SuccessDataResult;
 import com.dgnklz.hrmanagementsystem.core.result.SuccessResult;
 import com.dgnklz.hrmanagementsystem.entity.Contract;
 import com.dgnklz.hrmanagementsystem.repository.ContractRepository;
-import com.dgnklz.hrmanagementsystem.repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +22,9 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class ContractManager implements ContractService {
-
     private ContractRepository repository;
-    private EmployeeRepository employeeRepository;
-
     private ModelMapperService mapper;
-
+    private ContractBusinessRule rule;
 
     @Override
     public DataResult<CreateContractResponse> add(CreateContractRequest request) {
@@ -50,8 +46,8 @@ public class ContractManager implements ContractService {
 
     @Override
     public DataResult<UpdateContractResponse> update(UpdateContractRequest request, int id) {
-        checkIfContractNotExistById(id);
-        checkIfEmployeeExistById(request.getEmployeeId());
+        rule.checkIfContractNotExistById(id);
+        rule.checkIfEmployeeExistById(request.getEmployeeId());
         Contract contract = mapper.forRequest().map(request, Contract.class);
         contract.setId(id);
         repository.save(contract);
@@ -60,22 +56,8 @@ public class ContractManager implements ContractService {
     }
 
     public Result deleteById(int id ){
-        checkIfContractNotExistById(id);
+        rule.checkIfContractNotExistById(id);
         repository.deleteById(id);
         return new SuccessResult("Deleted contract Successfully");
-    }
-
-    /// DOMAIN RULES \\\
-
-    private void checkIfContractNotExistById(int id){
-        if(!repository.existsContractById(id)){
-            throw new BusinessException("Contract not exist");
-        }
-    }
-
-    private void checkIfEmployeeExistById(int employeeId) {
-        if (!employeeRepository.existsById(employeeId)) {
-            throw new BusinessException("Employee is not exist by id: " + employeeId);
-        }
     }
 }
