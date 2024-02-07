@@ -4,6 +4,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.employee.CreateEmploy
 import com.dgnklz.hrmanagementsystem.business.dto.requests.employee.UpdateEmployeeRequest;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.CreateEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetAllEmployeesResponse;
+import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetEmployeeByIdResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.UpdateEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
 import com.dgnklz.hrmanagementsystem.core.result.Result;
@@ -14,6 +15,8 @@ public interface EmployeeService {
 
     DataResult<CreateEmployeeResponse> add(CreateEmployeeRequest request);
     DataResult<List<GetAllEmployeesResponse>> getAll();
+
+    DataResult<GetEmployeeByIdResponse> getEmployeeById(int id);
     DataResult<UpdateEmployeeResponse> update(UpdateEmployeeRequest request, int id);
     Result deleteById(int id);
 
