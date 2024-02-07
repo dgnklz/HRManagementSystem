@@ -31,6 +31,14 @@ public class EmployeeBusinessRule {
         }
     }
 
+    public Employee getEmployeById(int id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow();
+        if (!employeeRepository.existsById(id)){
+            throw new BusinessException("Employee is not exist");
+        }
+        return employee;
+    }
+
     public void checkIfEmployeeNotExistByEmail(String email){
         if(!employeeRepository.existsEmployeeByEmail(email)) {
             throw new BusinessException("Employee email not exist");

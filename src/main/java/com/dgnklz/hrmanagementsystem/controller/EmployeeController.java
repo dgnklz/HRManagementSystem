@@ -5,6 +5,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.employee.CreateEmploy
 import com.dgnklz.hrmanagementsystem.business.dto.requests.employee.UpdateEmployeeRequest;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.CreateEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetAllEmployeesResponse;
+import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetEmployeeByIdResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.UpdateEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.core.result.DataResult;
 import com.dgnklz.hrmanagementsystem.core.result.Result;
@@ -27,11 +28,17 @@ public class EmployeeController {
         return service.add(request);
     }
 
+
     @GetMapping("/getAll")
     public DataResult<List<GetAllEmployeesResponse>> getAll() {
         return service.getAll();
     }
 
+
+    @GetMapping("/getEmployee/{id}")
+    public DataResult<GetEmployeeByIdResponse> getEmployeeById(@PathVariable int id){
+        return service.getEmployeeById(id);
+    }
     @PutMapping("/update/{id}")
     public DataResult<UpdateEmployeeResponse> update(@Valid @RequestBody UpdateEmployeeRequest request, @PathVariable int id){
         return service.update(request, id);

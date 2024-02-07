@@ -5,6 +5,7 @@ import com.dgnklz.hrmanagementsystem.business.dto.requests.employee.CreateEmploy
 import com.dgnklz.hrmanagementsystem.business.dto.requests.employee.UpdateEmployeeRequest;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.CreateEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetAllEmployeesResponse;
+import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.GetEmployeeByIdResponse;
 import com.dgnklz.hrmanagementsystem.business.dto.responses.employee.UpdateEmployeeResponse;
 import com.dgnklz.hrmanagementsystem.business.rules.EmployeeBusinessRule;
 import com.dgnklz.hrmanagementsystem.core.exception.BusinessException;
@@ -51,6 +52,13 @@ public class EmployeeManager implements EmployeeService {
                 .toList();
         return new SuccessDataResult<>(responses, "All Employees Listed");
 
+    }
+
+    @Override
+    public DataResult<GetEmployeeByIdResponse> getEmployeeById(int id) {
+        Employee employeeResult = rule.getEmployeById(id);
+        GetEmployeeByIdResponse response = mapper.forRequest().map(employeeResult, GetEmployeeByIdResponse.class);
+        return new SuccessDataResult<>(response, "Employee found by id");
     }
 
     @Override
