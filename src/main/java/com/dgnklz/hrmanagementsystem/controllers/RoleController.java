@@ -4,8 +4,10 @@ package com.dgnklz.hrmanagementsystem.controllers;
 import com.dgnklz.hrmanagementsystem.services.abstracts.RoleService;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.role.CreateRoleRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.role.UpdateRoleRequest;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetContractByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.role.CreateRoleResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.role.GetAllRolesResponse;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.role.GetRoleByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.role.UpdateRoleResponse;
 import com.dgnklz.hrmanagementsystem.cores.results.DataResult;
 import com.dgnklz.hrmanagementsystem.cores.results.Result;
@@ -29,6 +31,11 @@ public class RoleController {
 
     @GetMapping("getAll")
     public DataResult<List<GetAllRolesResponse>> getAll(){return service.getAll();}
+
+    @GetMapping("/get/{id}")
+    public DataResult<GetRoleByIdResponse> getById(@PathVariable int id){
+        return service.getById(id);
+    }
 
     @PutMapping("/update/{id}")
     public DataResult<UpdateRoleResponse> update(@Valid @RequestBody UpdateRoleRequest request, @PathVariable int id){

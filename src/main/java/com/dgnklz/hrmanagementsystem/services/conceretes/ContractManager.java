@@ -5,6 +5,7 @@ import com.dgnklz.hrmanagementsystem.services.payloads.requests.contract.CreateC
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.contract.UpdateContractRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.CreateContractResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetAllContractsResponse;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetContractByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.UpdateContractResponse;
 import com.dgnklz.hrmanagementsystem.services.rules.ContractBusinessRule;
 import com.dgnklz.hrmanagementsystem.cores.mapping.ModelMapperService;
@@ -45,9 +46,17 @@ public class ContractManager implements ContractService {
     }
 
     @Override
+    public DataResult<GetContractByIdResponse> getById(int id) {
+        rule.checkIfContractNotExistById(id);
+        Contract contract = repository.findById(id).orElse(null);
+        GetContractByIdResponse response = mapper.forResponse().map(contract, GetContractByIdResponse.class);
+        return new SuccessDataResult<>(response, "Contract found by id");
+    }
+
+    @Override
     public DataResult<UpdateContractResponse> update(UpdateContractRequest request, int id) {
         rule.checkIfContractNotExistById(id);
-        rule.checkIfEmployeeExistById(request.getEmployeeId());
+        rule.checkIfEmployeeNotExistById(request.getEmployeeId());
         Contract contract = mapper.forRequest().map(request, Contract.class);
         contract.setId(id);
         repository.save(contract);

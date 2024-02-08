@@ -3,8 +3,10 @@ package com.dgnklz.hrmanagementsystem.services.conceretes;
 import com.dgnklz.hrmanagementsystem.services.abstracts.DepartmentService;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.department.CreateDepartmentRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.department.UpdateDepartmentRequest;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetContractByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.CreateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetAllDepartmentsResponse;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetDepartmentByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.UpdateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.services.rules.DepartmentBusinessRule;
 import com.dgnklz.hrmanagementsystem.cores.mapping.ModelMapperService;
@@ -46,6 +48,14 @@ public class DepartmentManager implements DepartmentService {
                 .map(department -> mapper.forResponse().map(department, GetAllDepartmentsResponse.class))
                 .toList();
         return new SuccessDataResult<>(responses, "All Departments Listed");
+    }
+
+    @Override
+    public DataResult<GetDepartmentByIdResponse> getById(int id) {
+        rule.checkIfDepartmentNotExistById(id);
+        Department department = repository.findById(id).orElse(null);
+        GetDepartmentByIdResponse response = mapper.forResponse().map(department, GetDepartmentByIdResponse.class);
+        return new SuccessDataResult<>(response, "Department found by id");
     }
 
     @Override

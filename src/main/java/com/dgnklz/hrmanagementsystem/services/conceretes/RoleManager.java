@@ -1,10 +1,13 @@
 package com.dgnklz.hrmanagementsystem.services.conceretes;
 
+import com.dgnklz.hrmanagementsystem.models.entities.Department;
 import com.dgnklz.hrmanagementsystem.services.abstracts.RoleService;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.role.CreateRoleRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.role.UpdateRoleRequest;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetDepartmentByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.role.CreateRoleResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.role.GetAllRolesResponse;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.role.GetRoleByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.role.UpdateRoleResponse;
 import com.dgnklz.hrmanagementsystem.services.rules.RoleBusinessRule;
 import com.dgnklz.hrmanagementsystem.cores.mapping.ModelMapperService;
@@ -44,6 +47,14 @@ public class RoleManager implements RoleService {
                 .map(role -> mapper.forResponse().map(role, GetAllRolesResponse.class))
                 .toList();
         return new SuccessDataResult<>(responses, "All Roles Listed");
+    }
+
+    @Override
+    public DataResult<GetRoleByIdResponse> getById(int id) {
+        rule.checkIfRoleNotExistById(id);
+        Role role = repository.findById(id).orElse(null);
+        GetRoleByIdResponse response = mapper.forResponse().map(role, GetRoleByIdResponse.class);
+        return new SuccessDataResult<>(response, "Role found by id");
     }
 
     @Override

@@ -3,8 +3,10 @@ package com.dgnklz.hrmanagementsystem.controllers;
 import com.dgnklz.hrmanagementsystem.services.abstracts.DepartmentService;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.department.CreateDepartmentRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.department.UpdateDepartmentRequest;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetContractByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.CreateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetAllDepartmentsResponse;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetDepartmentByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.UpdateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.cores.results.DataResult;
 import com.dgnklz.hrmanagementsystem.cores.results.Result;
@@ -24,6 +26,11 @@ public class DepartmentController {
     @PostMapping("/add")
     public DataResult<CreateDepartmentResponse> add(@Valid @RequestBody CreateDepartmentRequest request) {
         return service.add(request);
+    }
+
+    @GetMapping("/get/{id}")
+    public DataResult<GetDepartmentByIdResponse> getById(@PathVariable int id){
+        return service.getById(id);
     }
 
     @GetMapping("/getAll")
