@@ -4,6 +4,7 @@ import com.dgnklz.hrmanagementsystem.services.payloads.requests.contract.CreateC
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.contract.UpdateContractRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.CreateContractResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetAllContractsResponse;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetContractByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.UpdateContractResponse;
 import com.dgnklz.hrmanagementsystem.cores.results.DataResult;
 import com.dgnklz.hrmanagementsystem.cores.results.Result;
@@ -15,6 +16,8 @@ public interface ContractService {
     DataResult<CreateContractResponse> add(CreateContractRequest request);
 
     DataResult<List<GetAllContractsResponse>> getAll();
+
+    DataResult<GetContractByIdResponse> getById(int id);
 
     DataResult<UpdateContractResponse> update(UpdateContractRequest request, int id);
 

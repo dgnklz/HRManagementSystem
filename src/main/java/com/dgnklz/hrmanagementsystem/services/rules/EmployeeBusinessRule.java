@@ -31,12 +31,11 @@ public class EmployeeBusinessRule {
         }
     }
 
-    public Employee getEmployeById(int id) {
-        Employee employee = employeeRepository.findById(id).orElseThrow();
+    public Employee getEmployeeById(int id) {
         if (!employeeRepository.existsById(id)){
             throw new BusinessException("Employee is not exist");
         }
-        return employee;
+        return employeeRepository.findById(id).orElse(null);
     }
 
     public void checkIfEmployeeNotExistByEmail(String email){
@@ -46,7 +45,7 @@ public class EmployeeBusinessRule {
     }
 
     public String checkIfEmployeeExistByEmail(String email, int id){
-        Employee employee = employeeRepository.findById(id).orElseThrow();
+        Employee employee = employeeRepository.findById(id).orElse(null);
         if (!email.equalsIgnoreCase(employee.getEmail())){
             if(employeeRepository.existsEmployeeByEmail(email)) {
                 throw new BusinessException("Employee email not exist");

@@ -5,6 +5,7 @@ import com.dgnklz.hrmanagementsystem.services.payloads.requests.contract.CreateC
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.contract.UpdateContractRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.CreateContractResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetAllContractsResponse;
+import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetContractByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.UpdateContractResponse;
 import com.dgnklz.hrmanagementsystem.cores.results.DataResult;
 import com.dgnklz.hrmanagementsystem.cores.results.Result;
@@ -28,6 +29,11 @@ public class ContractController {
 
     @GetMapping("/getAll")
     public DataResult<List<GetAllContractsResponse>> getAll(){return service.getAll();}
+
+    @GetMapping("/get/{id}")
+    public DataResult<GetContractByIdResponse> getById(@PathVariable int id){
+        return service.getById(id);
+    }
 
     @PutMapping("/update/{id}")
     public DataResult<UpdateContractResponse> update(@Valid @RequestBody UpdateContractRequest request, @PathVariable int id){

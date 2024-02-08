@@ -18,7 +18,7 @@ public class ContractBusinessRule {
         }
     }
 
-    public void checkIfEmployeeExistById(int employeeId) {
+    public void checkIfEmployeeNotExistById(int employeeId) {
         if (!employeeRepository.existsById(employeeId)) {
             throw new BusinessException("Employee is not exist by id: " + employeeId);
         }

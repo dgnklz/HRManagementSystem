@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class GetRoleByIdResponse {
+public class GetContractByIdResponse {
     private Salary salary;
     private String typeContract;
     private int hoursAmountMonth;

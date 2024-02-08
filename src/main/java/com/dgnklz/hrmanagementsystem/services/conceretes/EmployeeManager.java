@@ -48,7 +48,7 @@ public class EmployeeManager implements EmployeeService {
 
     @Override
     public DataResult<GetEmployeeByIdResponse> getEmployeeById(int id) {
-        Employee employeeResult = rule.getEmployeById(id);
+        Employee employeeResult = rule.getEmployeeById(id);
         GetEmployeeByIdResponse response = mapper.forRequest().map(employeeResult, GetEmployeeByIdResponse.class);
         return new SuccessDataResult<>(response, "Employee found by id");
     }
