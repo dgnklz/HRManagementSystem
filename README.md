@@ -54,7 +54,13 @@ The application will be available at [http://localhost:8080](http://localhost:80
 
 The API exposes the following endpoints:
 
-- `GET /api/employees/{id}`: Returns details of a specific employee.
+- `GET /api/employees/{id}`
+
+- `POST api/contract/add`
+- `GET api/contract/getAll`
+- `GET api/contract/get/{id}`
+- `PUT api/contract/update/{id}`
+- `DEL api/contract/deleteById/{id}`
 
 
 Add more details about the endpoints as needed.
