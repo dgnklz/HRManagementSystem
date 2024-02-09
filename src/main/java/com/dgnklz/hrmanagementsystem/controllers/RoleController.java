@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// http://localhost:8080/api/role/add
+// http://localhost:8080/api/role/getAll
+// http://localhost:8080/api/role/get/{id}
+// http://localhost:8080/api/role/update/{id}
+// http://localhost:8080/api/role/deleteByName/{name}
+
 @RestController
 @RequestMapping("/api/role")
 @AllArgsConstructor
