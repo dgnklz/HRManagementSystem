@@ -22,8 +22,8 @@ Make sure to have the following tools installed before running the project:
 
 ## Run following SQL insert statements
 ```
-INSERT INTO roles(name) VALUES('ROLE_MODERATOR');
-INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+INSERT INTO userroles(name) VALUES('ROLE_MODERATOR');
+INSERT INTO userroles(name) VALUES('ROLE_ADMIN');
 ```
 
 ## Configuration
