@@ -1,20 +1,16 @@
 package com.dgnklz.hrmanagementsystem.rules;
 
 
-
 import com.dgnklz.hrmanagementsystem.cores.exceptions.types.BusinessException;
 import com.dgnklz.hrmanagementsystem.mocks.MocksFacilitator;
-import com.dgnklz.hrmanagementsystem.models.entities.Contract;
 import com.dgnklz.hrmanagementsystem.repositories.ContractRepository;
 import com.dgnklz.hrmanagementsystem.repositories.EmployeeRepository;
-import com.dgnklz.hrmanagementsystem.services.conceretes.ContractManager;
 import com.dgnklz.hrmanagementsystem.services.rules.ContractBusinessRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.modelmapper.ModelMapper;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
@@ -47,13 +43,11 @@ public class ContractBusinessRuleTest {
     @Test
     void testCheckIfContractNotExistById() {
 
-        // Configuração do teste
         int contractId = 1;
         boolean b = contractRepositoryMock.existsContractById(contractId);
 
         when(contractRepositoryMock.existsContractById(contractId)).thenReturn(false);
 
-        // Verificar se a exceção é lançada quando o contrato não existe
         assertThrows(BusinessException.class, () -> contractBusinessRule.checkIfContractNotExistById(contractId));
     }
 

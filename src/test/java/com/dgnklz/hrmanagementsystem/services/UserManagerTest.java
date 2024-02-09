@@ -104,17 +104,14 @@ public class UserManagerTest {
         signinRequest.setUsername("testuser");
         signinRequest.setPassword("password");
 
-        // Mocking authentication
         Authentication authentication = mock(Authentication.class);
         UserDetailsImpl userDetails = new UserDetailsImpl(1, "testuser", "test@example.com", "password", Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER")));
         when(authentication.getPrincipal()).thenReturn(userDetails);
 
-        // Mocking authentication manager
         when(authenticationManager.authenticate(any(Authentication.class))).thenReturn(authentication);
 
         ResponseEntity<?> responseEntity = userManager.signin(signinRequest);
 
-        // Asserts
         Assertions.assertNotNull(responseEntity);
     }
 

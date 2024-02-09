@@ -35,7 +35,6 @@ class TokenManagerTest {
         authenticationMock = mock(Authentication.class);
         userDetailsMock = mock(UserDetailsImpl.class);
 
-        // Definir os valores de secretKey e expirationTime usando reflection
         try {
             Field secretKeyField = TokenManager.class.getDeclaredField("secretKey");
             secretKeyField.setAccessible(true);
@@ -76,24 +75,19 @@ class TokenManagerTest {
 
     @Test
     void testGenerateToken() {
-        // Configuração do teste
         String username = "testUser";
         when(authenticationMock.getPrincipal()).thenReturn(userDetailsMock);
         when(userDetailsMock.getUsername()).thenReturn(username);
 
-        // Executar o método sob teste
         String generatedToken = tokenManager.generateToken(authenticationMock);
 
-        // Verificar se o token foi gerado corretamente
         assertNotNull(generatedToken);
     }
 
     @Test
     void testValidateToken_InvalidToken() {
-        // Configuração do teste
         String invalidToken = "invalidToken";
 
-        // Executar o método sob teste e verificar se uma exceção é lançada
         assertThrows(TokenException.class, () -> tokenManager.validateToken(invalidToken));
     }
 
