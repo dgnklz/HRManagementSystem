@@ -11,12 +11,13 @@ import com.dgnklz.hrmanagementsystem.cores.results.DataResult;
 import com.dgnklz.hrmanagementsystem.cores.results.Result;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/api/employee")
 @AllArgsConstructor
 public class EmployeeController {
 
@@ -24,32 +25,38 @@ public class EmployeeController {
 
 
     @PostMapping("/add")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public DataResult<CreateEmployeeResponse> add(@Valid @RequestBody CreateEmployeeRequest request) {
         return service.add(request);
     }
 
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public DataResult<List<GetAllEmployeesResponse>> getAll() {
         return service.getAll();
     }
 
 
     @GetMapping("/getEmployee/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public DataResult<GetEmployeeByIdResponse> getEmployeeById(@PathVariable int id){
         return service.getEmployeeById(id);
     }
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public DataResult<UpdateEmployeeResponse> update(@Valid @RequestBody UpdateEmployeeRequest request, @PathVariable int id){
         return service.update(request, id);
     }
 
     @DeleteMapping("/deleteById/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public Result deleteById(@PathVariable int id) {
         return service.deleteById(id);
     }
 
     @DeleteMapping("/deleteByEmail/{email}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public Result deleteByEmail(@PathVariable String email) {
         return service.deleteByEmail(email);
     }
