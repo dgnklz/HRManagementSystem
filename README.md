@@ -82,6 +82,5 @@ AuthController
 - `POST api/auth/signin`
 
 
-Add more details about the endpoints as needed.
 
 
