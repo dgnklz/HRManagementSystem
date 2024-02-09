@@ -1,22 +1,13 @@
 package com.dgnklz.hrmanagementsystem.controller;
 
 import com.dgnklz.hrmanagementsystem.controllers.TestController;
-import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.CreateDepartmentResponse;
-import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetAllDepartmentsResponse;
-import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetDepartmentByIdResponse;
-import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.UpdateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.mocks.MocksFacilitator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
 
 public class TestControllerTest {
 

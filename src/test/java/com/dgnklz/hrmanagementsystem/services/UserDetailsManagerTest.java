@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class UserDetailsManagerTest {
@@ -36,27 +35,22 @@ class UserDetailsManagerTest {
 
     @Test
     void testLoadUserByUsername_UserExists() {
-        // Configuração do teste
         String username = "testUser";
         User user = mocks.getUser();
         when(userRepositoryMock.existsByUsername(username)).thenReturn(true);
         when(userRepositoryMock.findByUsername(username)).thenReturn(user);
 
-        // Executar o método sob teste
         UserDetails userDetails = userDetailsManager.loadUserByUsername(username);
 
-        // Verificar se os detalhes do usuário carregado estão corretos
         assertEquals(user.getUsername(), userDetails.getUsername());
         assertEquals(user.getPassword(), userDetails.getPassword());
     }
 
     @Test
     void testLoadUserByUsername_UserDoesNotExist() {
-        // Configuração do teste
         String username = "nonExistentUser";
         when(userRepositoryMock.existsByUsername(username)).thenReturn(false);
 
-        // Executar o método sob teste e verificar se uma exceção é lançada
         assertThrows(UsernameNotFoundException.class, () -> userDetailsManager.loadUserByUsername(username));
     }
 }

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class DepartmentBusinessRuleTest {
@@ -50,21 +49,18 @@ public class DepartmentBusinessRuleTest {
 
     @Test
     void testCheckIfDepartmentNotExistByName() {
-        // Configuração do teste
         String departmentName = "Finance";
         when(departmentRepositoryMock.existsByDepartmentName(departmentName)).thenReturn(false);
 
-        // Verificar se a exceção é lançada quando o departamento não existe
         assertThrows(BusinessException.class, () -> departmentBusinessRule.checkIfDepartmentNotExistByName(departmentName));
     }
 
     @Test
     void testCheckIfDepartmentNotExistById() {
-        // Configuração do teste
+        
         int departmentId = 1;
         when(departmentRepositoryMock.existsById(departmentId)).thenReturn(false);
 
-        // Verificar se a exceção é lançada quando o departamento não existe
         assertThrows(BusinessException.class, () -> departmentBusinessRule.checkIfDepartmentNotExistById(departmentId));
     }
 }
