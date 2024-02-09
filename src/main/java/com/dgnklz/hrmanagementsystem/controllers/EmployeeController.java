@@ -16,6 +16,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// http://localhost:8080/api/employee/add
+// http://localhost:8080/api/employee/getAll
+// http://localhost:8080/api/employee/getEmployee/{id}
+// http://localhost:8080/api/employee/update/{id}
+// http://localhost:8080/api/employee/deleteById/{id}
+// http://localhost:8080/api/employee/deleteByEmail/{email}
+
 @RestController
 @RequestMapping("/api/employee")
 @AllArgsConstructor

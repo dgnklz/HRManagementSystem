@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// http://localhost:8080/api/contract/add
+// http://localhost:8080/api/contract/getAll
+// http://localhost:8080/api/contract/get/{id}
+// http://localhost:8080/api/contract/update/{id}
+// http://localhost:8080/api/contract/deleteById/{id}
+
 @RestController
 @RequestMapping("/api/contract")
 @AllArgsConstructor
