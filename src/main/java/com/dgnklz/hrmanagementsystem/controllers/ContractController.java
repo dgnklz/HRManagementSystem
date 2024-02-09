@@ -11,36 +11,43 @@ import com.dgnklz.hrmanagementsystem.cores.results.DataResult;
 import com.dgnklz.hrmanagementsystem.cores.results.Result;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/contract")
+@RequestMapping("/api/contract")
 @AllArgsConstructor
 public class ContractController {
 
     private ContractService service;
+
     @PostMapping("/add")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public DataResult<CreateContractResponse> add(@Valid @RequestBody CreateContractRequest request){
         return service.add(request);
 
     }
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public DataResult<List<GetAllContractsResponse>> getAll(){return service.getAll();}
 
     @GetMapping("/get/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public DataResult<GetContractByIdResponse> getById(@PathVariable int id){
         return service.getById(id);
     }
 
     @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public DataResult<UpdateContractResponse> update(@Valid @RequestBody UpdateContractRequest request, @PathVariable int id){
         return service.update(request, id);
     }
 
     @DeleteMapping("/deleteById/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public Result deleteById(@PathVariable int id) {return service.deleteById(id);}
 
 }
