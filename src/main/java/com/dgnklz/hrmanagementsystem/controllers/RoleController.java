@@ -18,7 +18,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// http://localhost:8080/api/role/add
+// http://localhost:8080/api/role/getAll
+// http://localhost:8080/api/role/get/{id}
+// http://localhost:8080/api/role/update/{id}
+// http://localhost:8080/api/role/deleteByName/{name}
+
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/role")
 @AllArgsConstructor
 public class RoleController {
@@ -46,6 +53,13 @@ public class RoleController {
     public DataResult<UpdateRoleResponse> update(@Valid @RequestBody UpdateRoleRequest request, @PathVariable int id){
         return service.update(request, id);
     }
+
+    @DeleteMapping("/deleteById/{id}")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+    public Result deleteById(@PathVariable int id) {
+        return service.deleteById(id);
+    }
+
 
     @DeleteMapping("/deleteByName/{name}")
     @PreAuthorize("hasRole('ADMIN')")

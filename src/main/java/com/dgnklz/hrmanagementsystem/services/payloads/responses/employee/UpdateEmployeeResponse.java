@@ -12,7 +12,7 @@ public class UpdateEmployeeResponse {
     private String name;
     private String surname;
     private Gender gender;
-    private Address address;
+    private String address;
     private String email;
     private String phoneNumber;
     private String nationality;

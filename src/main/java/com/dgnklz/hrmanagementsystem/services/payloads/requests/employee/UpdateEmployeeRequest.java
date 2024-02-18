@@ -27,7 +27,7 @@ public class UpdateEmployeeRequest {
     private String gender;
 
     @NotNull(message = "Please provide Address Details")
-    private Address address;
+    private String address;
 
     @NotBlank(message = "can not be blanked")
     private String email;
