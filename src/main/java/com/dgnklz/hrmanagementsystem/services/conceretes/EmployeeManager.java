@@ -1,5 +1,7 @@
 package com.dgnklz.hrmanagementsystem.services.conceretes;
 
+import com.dgnklz.hrmanagementsystem.models.entities.Department;
+import com.dgnklz.hrmanagementsystem.models.entities.Role;
 import com.dgnklz.hrmanagementsystem.services.abstracts.EmployeeService;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.employee.CreateEmployeeRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.employee.UpdateEmployeeRequest;
@@ -7,6 +9,7 @@ import com.dgnklz.hrmanagementsystem.services.payloads.responses.employee.Create
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.employee.GetAllEmployeesResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.employee.GetEmployeeByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.employee.UpdateEmployeeResponse;
+import com.dgnklz.hrmanagementsystem.services.rules.DepartmentBusinessRule;
 import com.dgnklz.hrmanagementsystem.services.rules.EmployeeBusinessRule;
 import com.dgnklz.hrmanagementsystem.cores.mapping.ModelMapperService;
 import com.dgnklz.hrmanagementsystem.cores.results.DataResult;
@@ -15,6 +18,7 @@ import com.dgnklz.hrmanagementsystem.cores.results.SuccessDataResult;
 import com.dgnklz.hrmanagementsystem.cores.results.SuccessResult;
 import com.dgnklz.hrmanagementsystem.models.entities.Employee;
 import com.dgnklz.hrmanagementsystem.repositories.EmployeeRepository;
+import com.dgnklz.hrmanagementsystem.services.rules.RoleBusinessRule;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +30,17 @@ public class EmployeeManager implements EmployeeService {
     private EmployeeRepository repository;
     private ModelMapperService mapper;
     private EmployeeBusinessRule rule;
+
+    private DepartmentBusinessRule departmentBusinessRule;
+    private RoleBusinessRule roleBusinessRule;
     @Override
     public DataResult<CreateEmployeeResponse> add(CreateEmployeeRequest request) {
         rule.checkIfExistEmployee(request.getName(), request.getSurname());
+        Role roleById = roleBusinessRule.getRoleById(request.getRoleId());
+        Department departmentById = departmentBusinessRule.getDepartmentById(request.getDepartmentId());
         Employee employee = mapper.forRequest().map(request, Employee.class);
+        employee.setDepartment(departmentById);
+        employee.setRole(roleById);
         repository.save(employee);
         CreateEmployeeResponse response = mapper.forResponse().map(employee, CreateEmployeeResponse.class);
         return new SuccessDataResult<>(response, "Created");

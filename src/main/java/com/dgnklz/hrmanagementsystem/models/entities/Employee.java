@@ -43,8 +43,9 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Embedded
-    private Address address;
+    @Column(name="address")
+    // to do put every variables from addres here.
+    private String address;
 
     @Column(name="email")
     private String email;

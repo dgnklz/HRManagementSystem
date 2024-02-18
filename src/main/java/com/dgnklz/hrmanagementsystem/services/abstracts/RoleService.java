@@ -22,4 +22,7 @@ public interface RoleService {
 
     Result deleteByName(String name);
 
+    Result deleteById(int id);
+
+
 }

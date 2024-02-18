@@ -21,6 +21,11 @@ public class DepartmentBusinessRule {
         }
     }
 
+    public Department getDepartmentById(int id) {
+        Department department = departmentRepository.findById(id).orElseThrow();
+        return department;
+    }
+
     public void checkIfDepartmentNotExistByName(String name) {
         if (!departmentRepository.existsByDepartmentName(name)) {
             throw new BusinessException("Department not exist");

@@ -23,6 +23,7 @@ import java.util.List;
 // http://localhost:8080/api/contract/deleteById/{id}
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/contract")
 @AllArgsConstructor
 public class ContractController {

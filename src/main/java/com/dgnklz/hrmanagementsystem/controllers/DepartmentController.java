@@ -3,7 +3,6 @@ package com.dgnklz.hrmanagementsystem.controllers;
 import com.dgnklz.hrmanagementsystem.services.abstracts.DepartmentService;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.department.CreateDepartmentRequest;
 import com.dgnklz.hrmanagementsystem.services.payloads.requests.department.UpdateDepartmentRequest;
-import com.dgnklz.hrmanagementsystem.services.payloads.responses.contract.GetContractByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.CreateDepartmentResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetAllDepartmentsResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.department.GetDepartmentByIdResponse;
@@ -25,9 +24,10 @@ import java.util.List;
 // http://localhost:8080/api/department/deleteByName/{name}
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/department")
 @AllArgsConstructor
-public class DepartmentController {
+public class DepartmentController{
 
     private DepartmentService service;
 

@@ -24,6 +24,7 @@ import java.util.List;
 // http://localhost:8080/api/employee/deleteByEmail/{email}
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/api/employee")
 @AllArgsConstructor
 public class EmployeeController {

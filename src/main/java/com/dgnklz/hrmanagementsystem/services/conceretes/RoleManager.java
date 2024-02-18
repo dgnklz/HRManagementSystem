@@ -74,4 +74,10 @@ public class RoleManager implements RoleService {
         repository.delete(role);
         return new SuccessResult("Delete role by name");
     }
+
+    public Result deleteById(int id) {
+        rule.checkIfRoleNotExistById(id);
+        repository.deleteById(id);
+        return new SuccessResult("Deleted successfully");
+    }
 }

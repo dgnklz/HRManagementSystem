@@ -41,4 +41,11 @@ public class RoleBusinessRule {
         }
     }
 
+    public Role getRoleById(int id){
+        Role role = roleRepository.findById(id).orElseThrow();
+        return  role;
+    }
+
+
+
 }
