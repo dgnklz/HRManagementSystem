@@ -30,8 +30,9 @@ public class Employee {
     private Department department;
 
     @OneToOne(mappedBy = "employee",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            fetch = FetchType.LAZY)
+    //        cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Contract contract;
 
     @Column(name="name")
