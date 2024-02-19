@@ -68,7 +68,6 @@ public class EmployeeManager implements EmployeeService {
     @Override
     public DataResult<UpdateEmployeeResponse> update(UpdateEmployeeRequest request, int id) {
         rule.checkIfEmployeeNotExistById(id);
-        rule.checkIfEmployeeExistByEmail(request.getEmail(), id);
         rule.checkIfEmployeeTwentyYearsOld(request.getDateOfBirth());
         rule.checkIfDepartmentNotExistById(request.getDepartmentId());
         rule.checkIfRoleNotExistById(request.getRoleId());
