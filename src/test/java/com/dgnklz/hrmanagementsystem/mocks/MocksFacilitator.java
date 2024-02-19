@@ -47,10 +47,15 @@ public class MocksFacilitator {
 
         return salary;
     }
-    public Address getAddress(){
+//    public Address getAddress(){
+//
+//        Address address = new Address();
+//        return address;
+//    }
 
-        Address address = new Address();
-        return address;
+    public String getAddress(){
+
+        return "address";
     }
 
 

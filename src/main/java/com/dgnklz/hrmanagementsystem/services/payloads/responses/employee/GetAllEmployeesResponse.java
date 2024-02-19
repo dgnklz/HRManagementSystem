@@ -1,6 +1,5 @@
 package com.dgnklz.hrmanagementsystem.services.payloads.responses.employee;
 
-import com.dgnklz.hrmanagementsystem.models.entities.Address;
 import com.dgnklz.hrmanagementsystem.models.entities.Gender;
 import lombok.Getter;
 import lombok.Setter;
