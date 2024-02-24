@@ -261,7 +261,7 @@ public class MocksFacilitator {
         expectedResponse.setEmail("Email@Test.com");
         expectedResponse.setDateOfBirth(new Date());
         expectedResponse.setPhoneNumber("555");
-        expectedResponse.setRole(new Role());
+        //expectedResponse.setRole(new Role());
 
         return expectedResponse;
     }
@@ -276,7 +276,7 @@ public class MocksFacilitator {
         expectedResponse.setEmail("Email@Test.com");
         expectedResponse.setDateOfBirth(new Date());
         expectedResponse.setPhoneNumber("555");
-        expectedResponse.setRole(new Role());
+        //expectedResponse.setRole(new Role());
 
         return expectedResponse;
     }
