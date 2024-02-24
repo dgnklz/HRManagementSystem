@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -40,6 +42,7 @@ public class Contract {
 
     @OneToOne
     @JoinColumn(name = "employeeId")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Employee employee;
 
 }

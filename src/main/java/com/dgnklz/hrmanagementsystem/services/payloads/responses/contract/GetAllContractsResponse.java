@@ -10,6 +10,7 @@ import java.util.Date;
 @Setter
 public class GetAllContractsResponse {
     private int id;
+    private String employeeId;
     private Salary salary;
     private String typeContract;
     private int hoursAmountMonth;

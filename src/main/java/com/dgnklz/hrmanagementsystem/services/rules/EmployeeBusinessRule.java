@@ -20,7 +20,7 @@ public class EmployeeBusinessRule {
     private RoleRepository roleRepository;
 
     public void checkIfEmployeeNotExistById(int id){
-        if(!employeeRepository.existsById(id)){
+        if(!employeeRepository.existsEmployeeById(id)){
             throw new BusinessException("Employee is not exist by this id: " + id);
         }
     }

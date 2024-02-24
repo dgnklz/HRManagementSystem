@@ -9,6 +9,10 @@ import java.util.Date;
 @Getter
 @Setter
 public class UpdateEmployeeResponse {
+
+    private String departmentId;
+
+    private String roleId;
     private String name;
     private String surname;
     private Gender gender;
@@ -18,7 +22,7 @@ public class UpdateEmployeeResponse {
     private String nationality;
     private Date dateOfBirth;
     private int age;
-    private Department department;
-    private Role role;
-    private Contract contract;
+//    private Department department;
+//    private Role role;
+//    private Contract contract;
 }

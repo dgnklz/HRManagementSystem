@@ -1,6 +1,5 @@
 package com.dgnklz.hrmanagementsystem.services.payloads.requests.employee;
 
-import com.dgnklz.hrmanagementsystem.models.entities.Address;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotBlank;

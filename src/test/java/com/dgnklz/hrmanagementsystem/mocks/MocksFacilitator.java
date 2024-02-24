@@ -47,10 +47,15 @@ public class MocksFacilitator {
 
         return salary;
     }
-    public Address getAddress(){
+//    public Address getAddress(){
+//
+//        Address address = new Address();
+//        return address;
+//    }
 
-        Address address = new Address();
-        return address;
+    public String getAddress(){
+
+        return "address";
     }
 
 
@@ -256,7 +261,7 @@ public class MocksFacilitator {
         expectedResponse.setEmail("Email@Test.com");
         expectedResponse.setDateOfBirth(new Date());
         expectedResponse.setPhoneNumber("555");
-        expectedResponse.setRole(new Role());
+        //expectedResponse.setRole(new Role());
 
         return expectedResponse;
     }
@@ -271,7 +276,7 @@ public class MocksFacilitator {
         expectedResponse.setEmail("Email@Test.com");
         expectedResponse.setDateOfBirth(new Date());
         expectedResponse.setPhoneNumber("555");
-        expectedResponse.setRole(new Role());
+        //expectedResponse.setRole(new Role());
 
         return expectedResponse;
     }

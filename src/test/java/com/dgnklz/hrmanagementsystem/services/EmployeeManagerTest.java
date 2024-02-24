@@ -12,8 +12,10 @@ import com.dgnklz.hrmanagementsystem.services.payloads.responses.employee.Create
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.employee.GetAllEmployeesResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.employee.GetEmployeeByIdResponse;
 import com.dgnklz.hrmanagementsystem.services.payloads.responses.employee.UpdateEmployeeResponse;
+import com.dgnklz.hrmanagementsystem.services.rules.DepartmentBusinessRule;
 import com.dgnklz.hrmanagementsystem.services.rules.EmployeeBusinessRule;
 import com.dgnklz.hrmanagementsystem.mocks.MocksFacilitator;
+import com.dgnklz.hrmanagementsystem.services.rules.RoleBusinessRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -40,8 +42,16 @@ class EmployeeManagerTest {
     @Mock
     private EmployeeBusinessRule ruleMock;
 
+    @Mock
+    private DepartmentBusinessRule departmentBusinessRule;
+
+    @Mock
+    private RoleBusinessRule roleBusinessRule;
+
     @InjectMocks
     private EmployeeManager employeeManager;
+
+
 
     @InjectMocks
     private MocksFacilitator mocks;
@@ -56,7 +66,7 @@ class EmployeeManagerTest {
 
         EmployeeBusinessRule ruleMock = mock(EmployeeBusinessRule.class);
 
-        employeeManager = new EmployeeManager(repositoryMock, mapperMock, ruleMock);
+        employeeManager = new EmployeeManager(repositoryMock, mapperMock, ruleMock, departmentBusinessRule, roleBusinessRule);
     }
 
     @Test
