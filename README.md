@@ -8,8 +8,6 @@ The HRManagementSystem API is a human resources management system developed in J
 
 - [Dogan Kilaz]
 - [Vinicius Lalli]
-- [Regina Pashkevych]
-- [Pravin Suresh]
 
 ## Prerequisites
 
