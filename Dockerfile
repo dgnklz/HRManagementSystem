@@ -1,20 +1,20 @@
-# Uygulama için JDK gerekli
+# JDK for application
 FROM openjdk:17-jdk-alpine
 
-# Bizim bu projemizdeki JAR dosyamızın, Docker içinde çalışacağı konumu
+# The location where the JAR file runs in Docker
 ARG JAR_FILE=target/*.jar
 
-# JAR dosyasını root klasörüne bu isimle kopyala
+# Copy the JAR file to the root folder with this name
 COPY ./target/HRManagementSystem-0.0.1.jar app.jar
 #COPY target/*.jar hrmanagementsystem.jar
 
-# Linux ortamını güncelle
+# Update Linux environment
 #CMD apt-get update-y
 
-# projenin calisacaği iç port
+# internal port where the project will run on
 EXPOSE 8080
 
-# Uygulamamızın çalışmasını sağlıyoruz.
+# make the application work.
 ENTRYPOINT ["java","-jar","/app.jar"]
 
 #FROM openjdk:17-jdk-alpine
